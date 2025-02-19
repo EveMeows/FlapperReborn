@@ -378,6 +378,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 118961650053444152, guid: ec75a037c67b61d48bbc6d8092c6dd56, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 118961650053444152, guid: ec75a037c67b61d48bbc6d8092c6dd56, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -435,6 +439,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6505659359877967155, guid: ec75a037c67b61d48bbc6d8092c6dd56, type: 3}
       insertIndex: -1
       addedObject: {fileID: 962375168}
+    - targetCorrespondingSourceObject: {fileID: 6505659359877967155, guid: ec75a037c67b61d48bbc6d8092c6dd56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 962375171}
   m_SourcePrefab: {fileID: 100100000, guid: ec75a037c67b61d48bbc6d8092c6dd56, type: 3}
 --- !u!1 &958013090
 GameObject:
@@ -508,11 +515,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 962375164}
+  _animator: {fileID: 962375171}
   _jumpForce: 3.35
-  _downwardAngle: -40
-  _upwardAngle: 30
-  _rotationSpeed: 8
-  _rotationSwitch: -0.7
+  _downwardAngle: -20
+  _upwardAngle: 20
+  _rotationSpeed: 6
 --- !u!114 &962375168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +606,28 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &962375171
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962375163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc113dfc5223fd84ba7155542d62f905, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

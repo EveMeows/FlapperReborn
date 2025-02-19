@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     #region Editor
     [SerializeField] private Rigidbody2D _body;
+    [SerializeField] private Animator _animator;
     
     [SerializeField] private float _jumpForce;
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         if (_body.linearVelocity.y < 0)
         {
             _rotationAngle = _downwardAngle;
+            _animator.speed = 1f;
         }
     }
 
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
         {    
             _body.linearVelocityY = _jumpForce;
             _rotationAngle = _upwardAngle;
+
+            _animator.speed = 3.5f;
         }
     }
 }
