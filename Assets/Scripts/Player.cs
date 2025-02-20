@@ -12,9 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float _downwardAngle;
     [SerializeField] private float _upwardAngle;
 
-    [SerializeField] private float _rotationSpeed;
+    /// <summary>
+    /// X is min, Y is max.
+    /// </summary>
+    [SerializeField] private Vector2 _rotationBoundaries;
     #endregion
 
+    
+    private float _rotationSpeed;
     private float _rotationAngle;
     private float _rotation;
 
@@ -30,6 +35,8 @@ public class Player : MonoBehaviour
         if (_body.linearVelocity.y < 0)
         {
             _rotationAngle = _downwardAngle;
+            _rotationSpeed = _rotationBoundaries.x;
+            
             _animator.speed = 1f;
         }
     }
@@ -50,6 +57,7 @@ public class Player : MonoBehaviour
         {    
             _body.linearVelocityY = _jumpForce;
             _rotationAngle = _upwardAngle;
+            _rotationSpeed = _rotationBoundaries.y;
 
             _animator.speed = 3.5f;
         }
