@@ -7,6 +7,9 @@ public class UI : MonoBehaviour
 {
     #region Editor
     [SerializeField] private GameObject _scoreContainer;
+
+    [SerializeField] private Vector2 _imageSize;
+    [SerializeField] private Vector3 _imageScale;
     #endregion
 
     public void OnPlayerScoreChanged(int score)
@@ -34,8 +37,8 @@ public class UI : MonoBehaviour
 
             // Set image size and scale
             RectTransform rect = image.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(100, 100);
-            rect.localScale = Vector3.one;
+            rect.sizeDelta = _imageSize;
+            rect.localScale = _imageScale;
 
             // Set sprite
             Sprite sprite = Resources.Load<Sprite>($"Sprites/UI/Numbers/Large/{num}");
