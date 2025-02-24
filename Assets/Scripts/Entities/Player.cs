@@ -7,6 +7,11 @@ public class Player : MonoBehaviour
     #region Editor
     [SerializeField] private Rigidbody2D _body;
     [SerializeField] private Animator _animator;
+
+    [SerializeField] private GameObject _flasher;
+
+    [SerializeField] private GameObject _managers;
+    [SerializeField] private GameObject _container;
     
     [SerializeField] private float _jumpForce;
 
@@ -27,6 +32,36 @@ public class Player : MonoBehaviour
 
     private int _score = 0;
 
+    private bool _dead;
+
+    private void Kill()
+    { 
+        _flasher.SetActive(true);
+
+        // Hide score count
+        _container.SetActive(false);
+
+        // Is this a hack?
+        // What better way is there to stop anims...
+        // _animator.speed = 0;
+        _animator.enabled = false;
+
+        // Disable everything
+        // My precious little hack....
+        // (Do not do this)
+        foreach (MonoBehaviour mb in _managers.GetComponentsInChildren<MonoBehaviour>())
+            mb.enabled = false;
+
+        _dead = true;
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject collider = collision.gameObject;
+        if (collider.layer == 7) Kill();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -39,12 +74,20 @@ public class Player : MonoBehaviour
                 _score++;
                 _onScoreChanged?.Invoke(_score);
 
-                // Disable so it cannot be triggered twice.
-                collision.enabled = false;
                 break;
+
+            // Pipe
+            case 6:
+                Kill();
+                break;
+            
             default:
                 return;
         }
+
+
+        // Disable so it cannot be triggered twice.
+        collision.enabled = false;
     }
 
 
@@ -76,6 +119,8 @@ public class Player : MonoBehaviour
 
     public void OnJumpPressed(InputAction.CallbackContext context)
     {
+        if (_dead) return;
+
         // Apply jump force
         // Only when the button is first pressed.
         if (context.started)
